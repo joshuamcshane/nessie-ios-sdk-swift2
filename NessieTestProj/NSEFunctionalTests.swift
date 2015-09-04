@@ -513,7 +513,7 @@ class PurchaseTests {
                 
                 if purchases!.count > 0 {
                     let purchaseToGet = purchases![purchases!.count-1]
-                    var purchaseToDelete:Transaction? = nil;
+                    var purchaseToDelete:Purchase? = nil;
                     for purchase in purchases! {
                         if purchase.status == "pending" {
                             purchaseToDelete = purchase
@@ -530,13 +530,13 @@ class PurchaseTests {
         })
     }
     
-    func testPutPurchase(purchase:Transaction?) {
+    func testPutPurchase(purchase:Purchase?) {
         
         if (purchase == nil) {
             return
         }
         PurchaseRequest(block: {(builder:PurchaseRequestBuilder) in
-            builder.purchaseId = purchase!.transactionId
+            builder.purchaseId = purchase!.purchaseId
             println(purchase!.status)
             builder.requestType = HTTPType.PUT
             builder.amount = 4300
@@ -548,9 +548,9 @@ class PurchaseTests {
         })
     }
     
-    func testDeletePurchase(purchase:Transaction?) {
+    func testDeletePurchase(purchase:Purchase?) {
         PurchaseRequest(block: {(builder:PurchaseRequestBuilder) in
-            builder.purchaseId = purchase!.transactionId
+            builder.purchaseId = purchase!.purchaseId
             println(purchase!.status)
             
             builder.requestType = HTTPType.DELETE
@@ -620,7 +620,7 @@ class TransferTests {
                     for transfer in transfers! {
                         if transfer.status == "pending" {
                             transferToDelete = transfer
-                            self.testDeleteTransfer(transferToDelete)
+//                            self.testDeleteTransfer(transferToDelete)
                         }
                     }
                     
