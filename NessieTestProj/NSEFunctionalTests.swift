@@ -951,34 +951,36 @@ class EnterpriseTests {
     }
     
     func testEnterpriseGets() {
-//        EnterpriseAccountRequest()?.send({(result:AccountResult) in
-//            var accounts = result.getAllAccounts()
-//            var bills = 0
-//            for tmp in accounts! {
-//                bills += tmp.billIds!.count
-//            }
-//            EnterpriseAccountRequest(accountId: accounts![0].accountId)?.send({(result:AccountResult) in
-//                var account = result.getAccount()
-//            })
-//        })
-//        
-//        EnterpriseBillRequest()?.send({(result:BillResult) in
-//            var bills = result.getAllBills()
-//            var x:NSMutableSet = NSMutableSet()
-//            for bill in bills! {
-//                x.addObject(bill.billId)
-//            }
-//            EnterpriseBillRequest(billId: bills![0].billId)?.send({(result:BillResult) in
-//                var bill = result.getBill()
-//            })
-//        })
-//        
-//        EnterpriseCustomerRequest()?.send({(result:CustomerResult) in
-//            var customers = result.getAllCustomers()
-//            EnterpriseCustomerRequest(customerId: customers![0].customerId)?.send({(result:CustomerResult) in
-//                var customer = result.getCustomer()
-//            })
-//        })
+        EnterpriseAccountRequest()?.send({(result:AccountResult) in
+            var accounts = result.getAllAccounts()
+            var bills = 0
+            for tmp in accounts! {
+                if (tmp.billIds != nil) {
+                    bills += tmp.billIds!.count
+                }
+            }
+            EnterpriseAccountRequest(accountId: accounts![0].accountId)?.send({(result:AccountResult) in
+                var account = result.getAccount()
+            })
+        })
+        
+        EnterpriseBillRequest()?.send({(result:BillResult) in
+            var bills = result.getAllBills()
+            var x:NSMutableSet = NSMutableSet()
+            for bill in bills! {
+                x.addObject(bill.billId)
+            }
+            EnterpriseBillRequest(billId: bills![0].billId)?.send({(result:BillResult) in
+                var bill = result.getBill()
+            })
+        })
+        
+        EnterpriseCustomerRequest()?.send({(result:CustomerResult) in
+            var customers = result.getAllCustomers()
+            EnterpriseCustomerRequest(customerId: customers![0].customerId)?.send({(result:CustomerResult) in
+                var customer = result.getCustomer()
+            })
+        })
         
         EnterpriseTransferRequest()?.send({(result:TransferResult) in
             var transfers = result.getAllTransfers()
@@ -988,7 +990,30 @@ class EnterpriseTests {
                 print("\(transfer)\n")
             })
         })
-        
+        EnterpriseDepositRequest()?.send({(result:DepositResult) in
+            var deposits = result.getAllDeposits()
+            print("\(deposits)\n")
+            EnterpriseDepositRequest(transactionId: deposits![0].transactionId)?.send({(result:DepositResult) in
+                var deposit = result.getDeposit()
+                print("\(deposit)\n")
+            })
+        })
+        EnterpriseWithdrawalRequest()?.send({(result:WithdrawalResult) in
+            var withdrawals = result.getAllWithdrawals()
+            print("\(withdrawals)\n")
+            EnterpriseWithdrawalRequest(transactionId: withdrawals![0].transactionId)?.send({(result:WithdrawalResult) in
+                var withdrawal = result.getWithdrawal()
+                print("\(withdrawal)\n")
+            })
+        })
+        EnterpriseMerchantRequest()?.send({(result:MerchantResult) in
+            var merchants = result.getAllMerchants()
+            print("\(merchants)\n")
+            EnterpriseMerchantRequest(merchantId: merchants![0].merchantId)?.send({(result:MerchantResult) in
+                var merchant = result.getMerchant()
+                print("\(merchant)\n")
+            })
+        })
     }
 }
 
