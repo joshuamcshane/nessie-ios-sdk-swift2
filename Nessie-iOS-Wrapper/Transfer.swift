@@ -14,8 +14,10 @@ public class TransferRequestBuilder {
     
     public var transferMedium: TransactionMedium?
     public var amount: Int?
-    public var transferId: String?
+    public var transferId: String!
     public var description: String?
+    public var transferDate: String!
+    public var status: String!
 }
 
 public class TransferRequest {
@@ -35,11 +37,11 @@ public class TransferRequest {
         self.builder = builder
         
         if (builder.transferId == nil && (builder.requestType == HTTPType.PUT || builder.requestType == HTTPType.DELETE)) {
-            NSLog("PUT/DELETE require a deposit id")
+            NSLog("PUT/DELETE require a transferId")
             return nil
         }
         
-        if ((builder.accountId == nil || builder.transferMedium == nil || builder.amount == nil || builder.payeeId == nil) && builder.requestType == HTTPType.POST) {
+        if ((builder.accountId == nil || builder.payeeId == nil || builder.transferMedium == nil || builder.amount == nil) && builder.requestType == HTTPType.POST) {
             if (builder.accountId == nil) {
                 NSLog("POST requires accountId")
             }
@@ -56,25 +58,16 @@ public class TransferRequest {
             return nil
         }
 
-        if ((builder.transferId == nil || builder.transferMedium == nil || builder.amount == nil || builder.payeeId == nil) && builder.requestType == HTTPType.PUT) {
+        if (builder.transferId == nil && builder.requestType == HTTPType.PUT) {
             if (builder.transferId == nil) {
-                NSLog("POST requires merchant_Id")
-            }
-            if (builder.transferMedium == nil) {
-                NSLog("POST requires transferMedium")
-            }
-            if (builder.amount == nil) {
-                NSLog("POST requires amount")
-            }
-            if (builder.payeeId == nil) {
-                NSLog("POST requires payeeId")
+                NSLog("PUT requires transferId")
             }
             
             return nil
         }
 
         var requestString = buildRequestUrl()
-        print(requestString)
+        print("\(requestString)\n")
         buildRequest(requestString)
         
     }
@@ -85,13 +78,13 @@ public class TransferRequest {
         var requestString = "\(baseString)"
         
         if (builder.requestType == HTTPType.PUT) {
-            requestString += "/transfers/\(builder.accountId)?"
+            requestString += "/transfers/\(builder.transferId)?"
             requestString += "key=\(NSEClient.sharedInstance.getKey())"
             return requestString
         }
         
         if (builder.requestType == HTTPType.DELETE) {
-            requestString += "/transfers/\(builder.accountId)?"
+            requestString += "/transfers/\(builder.transferId)?"
             requestString += "key=\(NSEClient.sharedInstance.getKey())"
             return requestString
         }
@@ -121,11 +114,17 @@ public class TransferRequest {
     private func addParamsToRequest() {
         var params:Dictionary<String, AnyObject> = [:]
         var err: NSError?
-        
+
         if (builder.requestType == HTTPType.POST) {
-            params = ["medium":builder.transferMedium!.rawValue, "amount":builder.amount!]
+            params = ["medium":builder.transferMedium!.rawValue, "payee_id":builder.payeeId, "amount":builder.amount!]
             if let description = builder.description {
                 params["description"] = description
+            }
+            if let date = builder.transferDate {
+                params["transaction_date"] = date
+            }
+            if let status = builder.status {
+                params["status"] = status
             }
             self.request!.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
             
@@ -133,6 +132,9 @@ public class TransferRequest {
         if (builder.requestType == HTTPType.PUT) {
             if let medium = builder.transferMedium {
                 params["medium"] = medium.rawValue
+            }
+            if let payeeId = builder.payeeId {
+                params["payee_id"] = payeeId
             }
             if let amount = builder.amount {
                 params["amount"] = amount

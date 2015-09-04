@@ -52,6 +52,9 @@ public class PurchaseRequest {
             if (builder.amount == nil) {
                 NSLog("POST requires amount")
             }
+            if (builder.purchaseMedium == nil) {
+                NSLog("POST requires purchaseMedium")
+            }
             
             return nil
         }
@@ -59,9 +62,6 @@ public class PurchaseRequest {
         if (builder.purchaseId == nil && builder.requestType == HTTPType.PUT) {
             if (builder.purchaseId == nil) {
                 NSLog("PUT requires merchant_Id")
-            }
-            if (builder.amount == nil) {
-                NSLog("PUT requires amount")
             }
             
             return nil

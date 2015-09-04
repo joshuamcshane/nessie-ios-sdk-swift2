@@ -561,6 +561,210 @@ class PurchaseTests {
     }
 }
 
+class TransferTests {
+    let client = NSEClient.sharedInstance
+    
+    init() {
+        client.setKey("de82890c016c38778c4ffb8fc48847d2")
+        
+        testGetAllTransfers()
+    }
+    
+    var accountToAccess:Account!
+    
+    func testGetAllTransfers() {
+        
+        //get an account
+        var getAllRequest = AccountRequest(block: {(builder:AccountRequestBuilder) in
+            builder.requestType = HTTPType.GET
+        })
+        
+        getAllRequest?.send({(result:AccountResult) in
+            var accounts = result.getAllAccounts()
+            self.accountToAccess = accounts![0]
+            self.testPostTransfer()
+            
+            //test get all
+        })
+    }
+    
+    func testGetOneTransfer(transfer:Transaction) {
+        TransferRequest(block: {(builder:TransferRequestBuilder) in
+            builder.requestType = HTTPType.GET
+            builder.transferId = transfer.transactionId
+        })?.send(completion: {(result:TransferResult) in
+            var transferResult = result.getTransfer()
+            print(transferResult)
+        })
+    }
+    
+    func testPostTransfer() {
+        TransferRequest(block: {(builder:TransferRequestBuilder) in
+            builder.requestType = HTTPType.POST
+            builder.amount = 10
+            builder.transferMedium = TransactionMedium.BALANCE
+            builder.description = "test"
+            builder.accountId = self.accountToAccess.accountId
+            builder.payeeId = "55e94a1af8d877051ab4f6c1"
+            
+        })?.send(completion: {(result) in
+            TransferRequest(block: {(builder:TransferRequestBuilder) in
+                builder.requestType = HTTPType.GET
+                builder.accountId = self.accountToAccess.accountId
+            })?.send(completion: {(result:TransferResult) in
+                var transfers = result.getAllTransfers()
+                
+                if transfers!.count > 0 {
+                    let transferToGet = transfers![transfers!.count-1]
+                    var transferToDelete:Transaction? = nil;
+                    for transfer in transfers! {
+                        if transfer.status == "pending" {
+                            transferToDelete = transfer
+                            self.testDeleteTransfer(transferToDelete)
+                        }
+                    }
+                    
+                    //self.testGetOneTransfer(transferToGet)
+                    //self.testPutTransfer(transferToDelete)
+                    
+                }
+            })
+            
+        })
+    }
+    
+    func testPutTransfer(transfer:Transaction?) {
+        
+        if (transfer == nil) {
+            return
+        }
+        TransferRequest(block: {(builder:TransferRequestBuilder) in
+            builder.transferId = transfer!.transactionId
+            println(transfer!.status)
+            builder.requestType = HTTPType.PUT
+            builder.amount = 4300
+            builder.transferMedium = TransactionMedium.REWARDS
+            builder.description = "updated"
+            builder.payeeId = "55e94a1af8d877051ab4f6c2"
+        })?.send(completion: {(result:TransferResult) in
+            //            self.testDeleteTransfer(transfer!)
+        })
+    }
+    
+    func testDeleteTransfer(transfer:Transaction?) {
+        TransferRequest(block: {(builder:TransferRequestBuilder) in
+            builder.transferId = transfer!.transactionId
+            println(transfer!.status)
+            
+            builder.requestType = HTTPType.DELETE
+            builder.accountId = self.accountToAccess.accountId
+        })?.send(completion: {(result) in
+            
+        })
+    }
+}
+
+class WithdrawalTests {
+    let client = NSEClient.sharedInstance
+    
+    init() {
+        client.setKey("de82890c016c38778c4ffb8fc48847d2")
+        
+        testGetAllWithdrawals()
+    }
+    
+    var accountToAccess:Account!
+    
+    func testGetAllWithdrawals() {
+        
+        //get an account
+        var getAllRequest = AccountRequest(block: {(builder:AccountRequestBuilder) in
+            builder.requestType = HTTPType.GET
+        })
+        
+        getAllRequest?.send({(result:AccountResult) in
+            var accounts = result.getAllAccounts()
+            self.accountToAccess = accounts![0]
+            self.testPostWithdrawal()
+            
+            //test get all
+        })
+    }
+    
+    func testGetOneWithdrawal(withdrawal:Transaction) {
+        WithdrawalRequest(block: {(builder:WithdrawalRequestBuilder) in
+            builder.requestType = HTTPType.GET
+            builder.withdrawalId = withdrawal.transactionId
+        })?.send(completion: {(result:WithdrawalResult) in
+            var withdrawalResult = result.getWithdrawal()
+            print(withdrawalResult)
+        })
+    }
+    
+    func testPostWithdrawal() {
+        WithdrawalRequest(block: {(builder:WithdrawalRequestBuilder) in
+            builder.requestType = HTTPType.POST
+            builder.amount = 10
+            builder.withdrawalMedium = TransactionMedium.BALANCE
+            builder.description = "test"
+            builder.accountId = self.accountToAccess.accountId
+            
+        })?.send(completion: {(result) in
+            WithdrawalRequest(block: {(builder:WithdrawalRequestBuilder) in
+                builder.requestType = HTTPType.GET
+                builder.accountId = self.accountToAccess.accountId
+            })?.send(completion: {(result:WithdrawalResult) in
+                var withdrawals = result.getAllWithdrawals()
+                
+                if withdrawals!.count > 0 {
+                    let withdrawalToGet = withdrawals![withdrawals!.count-1]
+                    var withdrawalToDelete:Transaction? = nil;
+                    for withdrawal in withdrawals! {
+                        if withdrawal.status == "pending" {
+                            withdrawalToDelete = withdrawal
+                            //self.testDeleteWithdrawal(withdrawalToDelete)
+                        }
+                    }
+                    
+                    //self.testGetOneWithdrawal(withdrawalToGet)
+                    //self.testPutWithdrawal(withdrawalToDelete)
+                    
+                }
+            })
+            
+        })
+    }
+    
+    func testPutWithdrawal(withdrawal:Transaction?) {
+        
+        if (withdrawal == nil) {
+            return
+        }
+        WithdrawalRequest(block: {(builder:WithdrawalRequestBuilder) in
+            builder.withdrawalId = withdrawal!.transactionId
+            println(withdrawal!.status)
+            builder.requestType = HTTPType.PUT
+            builder.amount = 4300
+            builder.withdrawalMedium = TransactionMedium.REWARDS
+            builder.description = "updated"
+        })?.send(completion: {(result:WithdrawalResult) in
+            //            self.testDeleteWithdrawal(withdrawal!)
+        })
+    }
+    
+    func testDeleteWithdrawal(withdrawal:Transaction?) {
+        WithdrawalRequest(block: {(builder:WithdrawalRequestBuilder) in
+            builder.withdrawalId = withdrawal!.transactionId
+            println(withdrawal!.status)
+            
+            builder.requestType = HTTPType.DELETE
+            builder.accountId = self.accountToAccess.accountId
+        })?.send(completion: {(result) in
+            
+        })
+    }
+}
+
 class MerchantTests {
     let client = NSEClient.sharedInstance
     
@@ -728,105 +932,6 @@ class TransactionTests {
         TransactionRequest(block: {(builder:TransactionRequestBuilder) in
             builder.transactionId = transaction.transactionId
             println(transaction.status)
-            
-            builder.requestType = HTTPType.DELETE
-            builder.accountId = self.accountToAccess.accountId
-        })?.send(completion: {(result) in
-            
-        })
-    }
-}
-
-class WithdrawalTests {
-    let client = NSEClient.sharedInstance
-    
-    init() {
-        client.setKey("de82890c016c38778c4ffb8fc48847d2")
-        
-        testGetAllWithdrawals()
-    }
-    
-    var accountToAccess:Account!
-    
-    func testGetAllWithdrawals() {
-        
-        //get an account
-        var getAllRequest = AccountRequest(block: {(builder:AccountRequestBuilder) in
-            builder.requestType = HTTPType.GET
-        })
-        
-        getAllRequest?.send({(result:AccountResult) in
-            var accounts = result.getAllAccounts()
-            self.accountToAccess = accounts![0]
-            self.testPostWithdrawal()
-            
-            //test get all
-            WithdrawalRequest(block: {(builder:WithdrawalRequestBuilder) in
-                builder.requestType = HTTPType.GET
-                builder.accountId = self.accountToAccess.accountId
-            })?.send(completion: {(result:WithdrawalResult) in
-                var withdrawals = result.getAllWithdrawals()
-                
-                let withdrawalToGet = withdrawals![0]
-                var withdrawalToDelete:Transaction? = nil;
-                for withdrawal in withdrawals! {
-                    if withdrawal.status == "pending" {
-                        withdrawalToDelete = withdrawal
-                    }
-                }
-                
-                self.testGetOneWithdrawal(withdrawalToGet)
-                self.testPutWithdrawal(withdrawalToDelete)
-                
-            })
-        })
-    }
-    
-    func testGetOneWithdrawal(withdrawal:Transaction) {
-        WithdrawalRequest(block: {(builder:WithdrawalRequestBuilder) in
-            builder.requestType = HTTPType.GET
-            builder.accountId = self.accountToAccess.accountId
-            builder.withdrawalId = withdrawal.transactionId
-        })?.send(completion: {(result:WithdrawalResult) in
-            var withdrawalResult = result.getWithdrawal()
-        })
-    }
-    
-    func testPostWithdrawal() {
-        WithdrawalRequest(block: {(builder:WithdrawalRequestBuilder) in
-            builder.requestType = HTTPType.POST
-            builder.amount = 10
-            builder.withdrawalMedium = TransactionMedium.BALANCE
-            builder.description = "test"
-            builder.accountId = self.accountToAccess.accountId
-            
-        })?.send(completion: {(result) in
-            
-        })
-    }
-    
-    func testPutWithdrawal(withdrawal:Transaction?) {
-        
-        if (withdrawal == nil) {
-            return
-        }
-        WithdrawalRequest(block: {(builder:WithdrawalRequestBuilder) in
-            builder.withdrawalId = withdrawal!.transactionId
-            println(withdrawal!.status)
-            builder.requestType = HTTPType.PUT
-            builder.accountId = self.accountToAccess.accountId
-            builder.withdrawalMedium = TransactionMedium.REWARDS
-            builder.description = "updated"
-            
-        })?.send(completion: {(result:WithdrawalResult) in
-            self.testDeleteWithdrawal(withdrawal!)
-        })
-    }
-    
-    func testDeleteWithdrawal(withdrawal:Transaction) {
-        WithdrawalRequest(block: {(builder:WithdrawalRequestBuilder) in
-            builder.withdrawalId = withdrawal.transactionId
-            println(withdrawal.status)
             
             builder.requestType = HTTPType.DELETE
             builder.accountId = self.accountToAccess.accountId

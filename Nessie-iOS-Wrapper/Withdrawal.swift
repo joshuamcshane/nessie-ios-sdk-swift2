@@ -14,8 +14,11 @@ public class WithdrawalRequestBuilder {
     
     public var withdrawalMedium: TransactionMedium?
     public var amount: Int?
-    public var withdrawalId: String?
+    public var withdrawalId: String!
     public var description: String?
+    public var withdrawalDate: String!
+    public var status: String!
+
 }
 
 public class WithdrawalRequest {
@@ -35,7 +38,7 @@ public class WithdrawalRequest {
         self.builder = builder
         
         if (builder.withdrawalId == nil && (builder.requestType == HTTPType.PUT || builder.requestType == HTTPType.DELETE)) {
-            NSLog("PUT/DELETE require a deposit id")
+            NSLog("PUT/DELETE require a withdrawalId")
             return nil
         }
         
@@ -53,20 +56,6 @@ public class WithdrawalRequest {
             return nil
         }
         
-//        if ((builder.withdrawalId == nil || builder.withdrawalMedium == nil || builder.amount == nil) && builder.requestType == HTTPType.PUT) {
-//            if (builder.withdrawalId == nil) {
-//                NSLog("POST requires withdrawalId")
-//            }
-//            if (builder.amount == nil) {
-//                NSLog("POST requires amount")
-//            }
-//            if (builder.withdrawalMedium == nil) {
-//                NSLog("POST requires withdrawalMedium")
-//            }
-//            
-//            return nil
-//        }
-        
         var requestString = buildRequestUrl()
         buildRequest(requestString)
     }
@@ -77,13 +66,13 @@ public class WithdrawalRequest {
         var requestString = "\(baseString)"
         
         if (builder.requestType == HTTPType.PUT) {
-            requestString += "/withdrawals/\(builder.accountId)?"
+            requestString += "/withdrawals/\(builder.withdrawalId)?"
             requestString += "key=\(NSEClient.sharedInstance.getKey())"
             return requestString
         }
         
         if (builder.requestType == HTTPType.DELETE) {
-            requestString += "/withdrawals/\(builder.accountId)?"
+            requestString += "/withdrawals/\(builder.withdrawalId)?"
             requestString += "key=\(NSEClient.sharedInstance.getKey())"
             return requestString
         }
@@ -120,7 +109,14 @@ public class WithdrawalRequest {
             if let description = builder.description {
                 params["description"] = description
             }
+            if let date = builder.withdrawalDate {
+                params["transaction_date"] = date
+            }
+            if let status = builder.status {
+                params["status"] = status
+            }
             self.request!.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+            
         }
         if (builder.requestType == HTTPType.PUT) {
             if let medium = builder.withdrawalMedium {
