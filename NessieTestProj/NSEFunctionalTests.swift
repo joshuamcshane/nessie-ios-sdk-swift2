@@ -13,7 +13,7 @@ class AccountTests {
     let client = NSEClient.sharedInstance
 
     init() {
-        client.setKey("de82890c016c38778c4ffb8fc48847d2")
+        client.setKey("INSERT KEY")
         testAccountGets()
         testAccountPost()
     }
@@ -89,7 +89,7 @@ class ATMTests {
     let client = NSEClient.sharedInstance
 
     init() {
-        client.setKey("de82890c016c38778c4ffb8fc48847d2")
+        client.setKey("INSERT KEY")
 
         testATMGetAll()
     }
@@ -125,7 +125,7 @@ class BillTests {
     let client = NSEClient.sharedInstance
     
     init() {
-        client.setKey("de82890c016c38778c4ffb8fc48847d2")
+        client.setKey("INSERT KEY")
 
         testGetAllBills()
     }
@@ -227,7 +227,7 @@ class BranchTests {
     let client = NSEClient.sharedInstance
 
     init() {
-        client.setKey("de82890c016c38778c4ffb8fc48847d2")
+        client.setKey("INSERT KEY")
 
         testBranchGetAll()
     }
@@ -259,7 +259,7 @@ class CustomerTests {
     let client = NSEClient.sharedInstance
     
     init() {
-        client.setKey("de82890c016c38778c4ffb8fc48847d2")
+        client.setKey("INSERT KEY")
         
         testGetAllCustomers()
     }
@@ -360,7 +360,7 @@ class DepositTests {
     let client = NSEClient.sharedInstance
     
     init() {
-        client.setKey("de82890c016c38778c4ffb8fc48847d2")
+        client.setKey("INSERT KEY")
         
         testGetAllDeposits()
     }
@@ -462,7 +462,7 @@ class PurchaseTests {
     let client = NSEClient.sharedInstance
     
     init() {
-        client.setKey("de82890c016c38778c4ffb8fc48847d2")
+        client.setKey("INSERT KEY")
         
         testGetAllPurchases()
     }
@@ -565,7 +565,7 @@ class TransferTests {
     let client = NSEClient.sharedInstance
     
     init() {
-        client.setKey("de82890c016c38778c4ffb8fc48847d2")
+        client.setKey("INSERT KEY")
         
         testGetAllTransfers()
     }
@@ -668,7 +668,7 @@ class WithdrawalTests {
     let client = NSEClient.sharedInstance
     
     init() {
-        client.setKey("de82890c016c38778c4ffb8fc48847d2")
+        client.setKey("INSERT KEY")
         
         testGetAllWithdrawals()
     }
@@ -769,7 +769,7 @@ class MerchantTests {
     let client = NSEClient.sharedInstance
     
     init() {
-        client.setKey("de82890c016c38778c4ffb8fc48847d2")
+        client.setKey("INSERT KEY")
         
         testMerchants()
     }
@@ -843,7 +843,7 @@ class TransactionTests {
     let client = NSEClient.sharedInstance
     
     init() {
-        client.setKey("de82890c016c38778c4ffb8fc48847d2")
+        client.setKey("INSERT KEY")
         
         testGetAllTransactions()
     }
@@ -945,7 +945,7 @@ class EnterpriseTests {
     let client = NSEClient.sharedInstance
     
     init() {
-        client.setKey("de82890c016c38778c4ffb8fc48847d2")
+        client.setKey("INSERT KEY")
         
         testEnterpriseGets()
     }
