@@ -42,7 +42,7 @@ public class MerchantRequest {
             return nil
         }
 
-        var requestString = buildRequestUrl();
+        let requestString = buildRequestUrl();
         
         buildRequest(requestString);
         
@@ -74,7 +74,7 @@ public class MerchantRequest {
     
     private func validateLocationSearchParameters() -> String {
         if (builder.latitude != nil && builder.longitude != nil && builder.radius != nil) {
-            var locationSearchParameters = "lat=\(builder.latitude!)&lng=\(builder.longitude!)&rad=\(builder.radius!)"
+            let locationSearchParameters = "lat=\(builder.latitude!)&lng=\(builder.longitude!)&rad=\(builder.radius!)"
             return "?"+locationSearchParameters+"&"
         }
         else if !(builder.latitude == nil && builder.longitude == nil && builder.radius == nil) {
@@ -103,17 +103,22 @@ public class MerchantRequest {
             }
             
             if let address = builder.address {
-                var address2 = ["street_number":builder.address!.streetNumber, "street_name":builder.address!.streetName, "city":builder.address!.city, "state":builder.address!.state, "zip":builder.address!.zipCode]
+                let address2 = ["street_number":builder.address!.streetNumber, "street_name":builder.address!.streetName, "city":builder.address!.city, "state":builder.address!.state, "zip":builder.address!.zipCode]
                 params["address"] = address2
             }
             if (builder.latitude != nil && builder.longitude != nil) {
-                var geo = ["lat":builder.latitude, "lng":builder.longitude]
+                let geo = ["lat":builder.latitude, "lng":builder.longitude]
                 params["geocode"] = geo
             } else {
-                print("Latitude and Longitude must be set to update the geolocation\n")
+                print("Latitude and Longitude must be set to update the geolocation\n", terminator: "")
             }
 
-            request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+            do {
+                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
+            } catch let error as NSError {
+                err = error
+                request.HTTPBody = nil
+            }
             
         }
         
@@ -124,17 +129,22 @@ public class MerchantRequest {
             }
             
             if let address = builder.address {
-                var address2 = ["street_number":builder.address!.streetNumber, "street_name":builder.address!.streetName, "city":builder.address!.city, "state":builder.address!.state, "zip":builder.address!.zipCode]
+                let address2 = ["street_number":builder.address!.streetNumber, "street_name":builder.address!.streetName, "city":builder.address!.city, "state":builder.address!.state, "zip":builder.address!.zipCode]
                 params["address"] = address2
             }
             if (builder.latitude != nil && builder.longitude != nil) {
-                var geo = ["lat":builder.latitude, "lng":builder.longitude]
+                let geo = ["lat":builder.latitude, "lng":builder.longitude]
                 params["geocode"] = geo
             } else {
-                print("Latitude and Longitude must be set to set the geolocation")
+                print("Latitude and Longitude must be set to set the geolocation", terminator: "")
             }
             
-            request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+            do {
+                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
+            } catch let error as NSError {
+                err = error
+                request.HTTPBody = nil
+            }
         }
         
         return request
@@ -146,14 +156,14 @@ public class MerchantRequest {
     {
         NSURLSession.sharedSession().dataTaskWithRequest(request!, completionHandler:{(data, response, error) -> Void in
             if error != nil {
-                NSLog(error.description)
+                NSLog(error!.description)
                 return
             }
             if (completion == nil) {
                 return
             }
             
-            var result = MerchantResult(data: data)
+            let result = MerchantResult(data: data!)
             completion!(result)
             
         }).resume()
@@ -168,7 +178,7 @@ public struct MerchantResult
     internal init(data:NSData) {
         var parseError: NSError?
        
-        if let parsedObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error:&parseError) as? Array<Dictionary<String,AnyObject>> {
+        if let parsedObject = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? Array<Dictionary<String,AnyObject>> {
             dataArray = []
             dataItem = nil
             for merchant in parsedObject {
@@ -176,7 +186,7 @@ public struct MerchantResult
             }
         }
         
-        if let parsedObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error:&parseError) as? Dictionary<String,AnyObject> {
+        if let parsedObject = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? Dictionary<String,AnyObject> {
             
             let results = parsedObject
             

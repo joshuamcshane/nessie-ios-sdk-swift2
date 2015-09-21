@@ -55,7 +55,7 @@ public class TransactionRequest {
             return nil
         }
         
-        var requestString = buildRequestUrl()
+        let requestString = buildRequestUrl()
         buildRequest(requestString)
         
     }
@@ -96,7 +96,12 @@ public class TransactionRequest {
             if let description = builder.description {
                 params["description"] = description
             }
-            self.request!.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+            do {
+                self.request!.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
+            } catch let error as NSError {
+                err = error
+                self.request!.HTTPBody = nil
+            }
         }
         if (builder.requestType == HTTPType.PUT) {
             if let payeeId = builder.payeeId {
@@ -111,25 +116,30 @@ public class TransactionRequest {
             if let description = builder.description {
                 params["description"] = description
             }
-            self.request!.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+            do {
+                self.request!.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
+            } catch let error as NSError {
+                err = error
+                self.request!.HTTPBody = nil
+            }
         }
     }
 
     
     //Sending the request
     
-    public func send(#completion: ((TransactionResult) -> Void)?) {
+    public func send(completion completion: ((TransactionResult) -> Void)?) {
         
         NSURLSession.sharedSession().dataTaskWithRequest(request!, completionHandler:{(data, response, error) -> Void in
             if error != nil {
-                NSLog(error.description)
+                NSLog(error!.description)
                 return
             }
             if (completion == nil) {
                 return
             }
             
-            var result = TransactionResult(data: data)
+            let result = TransactionResult(data: data!)
             completion!(result)
             
         }).resume()
@@ -141,8 +151,7 @@ public struct TransactionResult {
     private var dataItem:Transaction?
     private var dataArray:Array<Transaction>?
     internal init(data:NSData) {
-        var parseError: NSError?
-        if let parsedObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error:&parseError) as? Array<Dictionary<String,AnyObject>> {
+        if let parsedObject = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? Array<Dictionary<String,AnyObject>> {
             
             dataArray = []
             dataItem = nil
@@ -150,7 +159,7 @@ public struct TransactionResult {
                 dataArray?.append(Transaction(data: transaction))
             }
         }
-        if let parsedObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error:&parseError) as? Dictionary<String,AnyObject> {
+        if let parsedObject = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? Dictionary<String,AnyObject> {
             dataArray = nil
             
             //If there is an error message, the json will parse to a dictionary, not an array
@@ -168,7 +177,7 @@ public struct TransactionResult {
         }
         
         if (dataItem == nil && dataArray == nil) {
-            var datastring = NSString(data: data, encoding: NSUTF8StringEncoding)
+            let datastring = NSString(data: data, encoding: NSUTF8StringEncoding)
             if (data.description == "<>") {
                 NSLog("Transaction delete successful")
             } else {

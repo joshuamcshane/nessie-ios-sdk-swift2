@@ -62,8 +62,8 @@ public class DepositRequest {
             return nil
         }
 
-        var requestString = buildRequestUrl()
-        print(requestString)
+        let requestString = buildRequestUrl()
+        print(requestString, terminator: "")
         buildRequest(requestString)
         
     }
@@ -116,7 +116,12 @@ public class DepositRequest {
             if let description = builder.description {
                 params["description"] = description
             }
-            self.request!.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+            do {
+                self.request!.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
+            } catch let error as NSError {
+                err = error
+                self.request!.HTTPBody = nil
+            }
 
         }
         if (builder.requestType == HTTPType.PUT) {
@@ -129,24 +134,29 @@ public class DepositRequest {
             if let description = builder.description {
                 params["description"] = description
             }
-            self.request!.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+            do {
+                self.request!.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
+            } catch let error as NSError {
+                err = error
+                self.request!.HTTPBody = nil
+            }
         }
     }
 
     
     //Sending the request
-    public func send(#completion: ((DepositResult) -> Void)?) {
+    public func send(completion completion: ((DepositResult) -> Void)?) {
         
         NSURLSession.sharedSession().dataTaskWithRequest(request!, completionHandler:{(data, response, error) -> Void in
             if error != nil {
-                NSLog(error.description)
+                NSLog(error!.description)
                 return
             }
             if (completion == nil) {
                 return
             }
             
-            var result = DepositResult(data: data)
+            let result = DepositResult(data: data!)
             completion!(result)
             
         }).resume()
@@ -159,7 +169,7 @@ public struct DepositResult {
     private var dataArray:Array<Transaction>?
     internal init(data:NSData) {
         var parseError: NSError?
-        if let parsedObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error:&parseError) as? Array<Dictionary<String,AnyObject>> {
+        if let parsedObject = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? Array<Dictionary<String,AnyObject>> {
             
             dataArray = []
             dataItem = nil
@@ -167,7 +177,7 @@ public struct DepositResult {
                 dataArray?.append(Transaction(data: deposit))
             }
         }
-        if let parsedObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error:&parseError) as? Dictionary<String,AnyObject> {
+        if let parsedObject = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? Dictionary<String,AnyObject> {
             dataArray = nil
             
             //If there is an error message, the json will parse to a dictionary, not an array
@@ -181,7 +191,7 @@ public struct DepositResult {
                 }
             }
             
-            if let parsedObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error:&parseError) as? Dictionary<String,AnyObject> {
+            if let parsedObject = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? Dictionary<String,AnyObject> {
                 dataArray = nil
                 
                 if let results:Array<AnyObject> = parsedObject["results"] as? Array<AnyObject> {
@@ -198,7 +208,7 @@ public struct DepositResult {
         }
         
         if (dataItem == nil && dataArray == nil) {
-            var datastring = NSString(data: data, encoding: NSUTF8StringEncoding)
+            let datastring = NSString(data: data, encoding: NSUTF8StringEncoding)
             if (data.description == "<>") {
                 NSLog("Deposit delete Successful")
             } else {

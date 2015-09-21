@@ -10,28 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Nessie-iOS-Wrapper/ATM.swift"
-            timestampString = "463065989.793468"
+            timestampString = "464554162.543827"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "getATM()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Nessie-iOS-Wrapper/Account.swift"
-            timestampString = "462838493.689446"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "init(data:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -47,71 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "186"
             endingLineNumber = "186"
-            landmarkName = "getAllAccounts()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Nessie-iOS-Wrapper/Account.swift"
-            timestampString = "462838493.689446"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "send(_:)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "NessieFmwk.AccountRequest.send (NessieFmwk.AccountRequest)(Swift.Optional&lt;(NessieFmwk.AccountResult) -&gt; ()&gt;) -&gt; ()"
-                  moduleName = "NessieFmwk"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/Nessie-iOS-Wrapper/Account.swift"
-                  timestampString = "462817866.890259"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "111"
-                  endingLineNumber = "111"
-                  offsetFromSymbolStart = "23">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "NessieFmwk.AccountRequest.(send (NessieFmwk.AccountRequest) -&gt; (Swift.Optional&lt;(NessieFmwk.AccountResult) -&gt; ()&gt;) -&gt; ()).(closure #1)"
-                  moduleName = "NessieFmwk"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/Nessie-iOS-Wrapper/Account.swift"
-                  timestampString = "462817866.89039"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "112"
-                  endingLineNumber = "112"
-                  offsetFromSymbolStart = "35">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Nessie-iOS-Wrapper/Account.swift"
-            timestampString = "462817887.614257"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "buildRequestUrl()"
+            landmarkName = "init(data:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -122,27 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NessieTestProj/NSEFunctionalTests.swift"
-            timestampString = "462980898.357312"
+            timestampString = "464554231.305538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
-            landmarkName = "testPostBill()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NessieTestProj/NSEFunctionalTests.swift"
-            timestampString = "462980898.357312"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "testPostBill()"
             landmarkType = "5">
             <Locations>
@@ -154,12 +58,60 @@
                   moduleName = "NessieTestProj"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/NessieTestProj/NSEFunctionalTests.swift"
-                  timestampString = "463172077.569645"
+                  timestampString = "464555569.309131"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "203"
-                  endingLineNumber = "203"
-                  offsetFromSymbolStart = "183">
+                  startingLineNumber = "195"
+                  endingLineNumber = "195"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NessieTestProj.BillTests.(testPostBill (NessieTestProj.BillTests) -&gt; () -&gt; ()).(closure #1)"
+                  moduleName = "NessieTestProj"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/NessieTestProj/NSEFunctionalTests.swift"
+                  timestampString = "464555569.309336"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "196"
+                  endingLineNumber = "196"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NessieTestProj/NSEFunctionalTests.swift"
+            timestampString = "464554231.305538"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "testPostBill()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NessieTestProj.BillTests.testPostBill (NessieTestProj.BillTests)() -&gt; ()"
+                  moduleName = "NessieTestProj"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/NessieTestProj/NSEFunctionalTests.swift"
+                  timestampString = "464555569.329289"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "205"
+                  endingLineNumber = "205"
+                  offsetFromSymbolStart = "167">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -169,11 +121,11 @@
                   moduleName = "NessieTestProj"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/NessieTestProj/NSEFunctionalTests.swift"
-                  timestampString = "463172077.569993"
+                  timestampString = "464555569.329466"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "203"
-                  endingLineNumber = "203"
+                  startingLineNumber = "205"
+                  endingLineNumber = "205"
                   offsetFromSymbolStart = "16">
                </Location>
             </Locations>
@@ -186,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NessieTestProj/NSEFunctionalTests.swift"
-            timestampString = "462980898.357312"
+            timestampString = "464554231.305538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "242"
-            endingLineNumber = "242"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
             landmarkName = "testBranchGetAll()"
             landmarkType = "5">
          </BreakpointContent>
@@ -218,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Nessie-iOS-Wrapper/Branch.swift"
-            timestampString = "462835902.669594"
+            timestampString = "464554162.543827"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "init(data:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NessieTestProj/NSEFunctionalTests.swift"
-            timestampString = "462985118.808493"
+            timestampString = "464554231.305538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "337"
-            endingLineNumber = "337"
+            startingLineNumber = "339"
+            endingLineNumber = "339"
             landmarkName = "testUpdateCustomer(_:)"
             landmarkType = "5">
             <Locations>
@@ -282,11 +234,11 @@
                   moduleName = "NessieTestProj"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/NessieTestProj/NSEFunctionalTests.swift"
-                  timestampString = "463172077.643488"
+                  timestampString = "464555569.371028"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "337"
-                  endingLineNumber = "337"
+                  startingLineNumber = "339"
+                  endingLineNumber = "339"
                   offsetFromSymbolStart = "16">
                </Location>
                <Location
@@ -297,11 +249,11 @@
                   moduleName = "NessieTestProj"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/NessieTestProj/NSEFunctionalTests.swift"
-                  timestampString = "463172077.643632"
+                  timestampString = "464555569.371208"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "338"
-                  endingLineNumber = "338"
+                  startingLineNumber = "340"
+                  endingLineNumber = "340"
                   offsetFromSymbolStart = "19">
                </Location>
             </Locations>
@@ -314,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NessieTestProj/NSEFunctionalTests.swift"
-            timestampString = "462985074.931717"
+            timestampString = "464554231.305538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "322"
-            endingLineNumber = "322"
+            startingLineNumber = "324"
+            endingLineNumber = "324"
             landmarkName = "testGetCustomerFromAccount(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -330,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NessieTestProj/NSEFunctionalTests.swift"
-            timestampString = "462985074.931717"
+            timestampString = "464554231.305538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
+            startingLineNumber = "321"
+            endingLineNumber = "321"
             landmarkName = "testGetCustomerFromAccount(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -346,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NessieTestProj/NSEFunctionalTests.swift"
-            timestampString = "462985118.808493"
+            timestampString = "464554231.305538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "353"
-            endingLineNumber = "353"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
             landmarkName = "testPostCustomer()"
             landmarkType = "5">
             <Locations>
@@ -362,12 +314,12 @@
                   moduleName = "NessieTestProj"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/NessieTestProj/NSEFunctionalTests.swift"
-                  timestampString = "463172077.645346"
+                  timestampString = "464555569.373119"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "354"
-                  endingLineNumber = "354"
-                  offsetFromSymbolStart = "161">
+                  startingLineNumber = "356"
+                  endingLineNumber = "356"
+                  offsetFromSymbolStart = "141">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -377,11 +329,11 @@
                   moduleName = "NessieTestProj"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/NessieTestProj/NSEFunctionalTests.swift"
-                  timestampString = "463172077.64553"
+                  timestampString = "464555569.373284"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "354"
-                  endingLineNumber = "354"
+                  startingLineNumber = "356"
+                  endingLineNumber = "356"
                   offsetFromSymbolStart = "16">
                </Location>
             </Locations>
@@ -394,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NessieTestProj/NSEFunctionalTests.swift"
-            timestampString = "463166819.881599"
+            timestampString = "464554231.305538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "832"
-            endingLineNumber = "832"
+            startingLineNumber = "834"
+            endingLineNumber = "834"
             landmarkName = "testPostMerchant()"
             landmarkType = "5">
          </BreakpointContent>
@@ -410,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NessieTestProj/NSEFunctionalTests.swift"
-            timestampString = "463071357.781543"
+            timestampString = "464554231.305538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "444"
-            endingLineNumber = "444"
+            startingLineNumber = "446"
+            endingLineNumber = "446"
             landmarkName = "testPutDeposit(_:)"
             landmarkType = "5">
             <Locations>
@@ -426,12 +378,12 @@
                   moduleName = "NessieTestProj"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/NessieTestProj/NSEFunctionalTests.swift"
-                  timestampString = "463172077.647204"
+                  timestampString = "464555569.376237"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "445"
-                  endingLineNumber = "445"
-                  offsetFromSymbolStart = "277">
+                  startingLineNumber = "447"
+                  endingLineNumber = "447"
+                  offsetFromSymbolStart = "257">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -441,11 +393,11 @@
                   moduleName = "NessieTestProj"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/NessieTestProj/NSEFunctionalTests.swift"
-                  timestampString = "463172077.64752"
+                  timestampString = "464555569.376416"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "445"
-                  endingLineNumber = "445"
+                  startingLineNumber = "447"
+                  endingLineNumber = "447"
                   offsetFromSymbolStart = "16">
                </Location>
             </Locations>
@@ -474,11 +426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Nessie-iOS-Wrapper/ATM.swift"
-            timestampString = "463066008.028256"
+            timestampString = "464554162.543827"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "init(data:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -490,11 +442,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NessieTestProj/NSEFunctionalTests.swift"
-            timestampString = "463072126.078995"
+            timestampString = "464554231.305538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "392"
-            endingLineNumber = "392"
+            startingLineNumber = "394"
+            endingLineNumber = "394"
             landmarkName = "testGetOneDeposit(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -506,11 +458,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NessieTestProj/NSEFunctionalTests.swift"
-            timestampString = "463072438.013907"
+            timestampString = "464554231.305538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "405"
-            endingLineNumber = "405"
+            startingLineNumber = "407"
+            endingLineNumber = "407"
             landmarkName = "testPostDeposit()"
             landmarkType = "5">
             <Locations>
@@ -522,11 +474,11 @@
                   moduleName = "NessieTestProj"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/NessieTestProj/NSEFunctionalTests.swift"
-                  timestampString = "463172077.650148"
+                  timestampString = "464555569.415695"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "405"
-                  endingLineNumber = "405"
+                  startingLineNumber = "407"
+                  endingLineNumber = "407"
                   offsetFromSymbolStart = "20">
                </Location>
                <Location
@@ -537,12 +489,12 @@
                   moduleName = "NessieTestProj"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/NessieTestProj/NSEFunctionalTests.swift"
-                  timestampString = "463172077.650311"
+                  timestampString = "464555569.41596"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "406"
-                  endingLineNumber = "406"
-                  offsetFromSymbolStart = "19">
+                  startingLineNumber = "408"
+                  endingLineNumber = "408"
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -554,11 +506,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NessieTestProj/NSEFunctionalTests.swift"
-            timestampString = "463071357.781543"
+            timestampString = "464554231.305538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "449"
-            endingLineNumber = "449"
+            startingLineNumber = "451"
+            endingLineNumber = "451"
             landmarkName = "testDeleteDeposit(_:)"
             landmarkType = "5">
             <Locations>
@@ -570,11 +522,11 @@
                   moduleName = "NessieTestProj"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/NessieTestProj/NSEFunctionalTests.swift"
-                  timestampString = "463172077.651165"
+                  timestampString = "464555569.428329"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "449"
-                  endingLineNumber = "449"
+                  startingLineNumber = "451"
+                  endingLineNumber = "451"
                   offsetFromSymbolStart = "16">
                </Location>
                <Location
@@ -585,12 +537,12 @@
                   moduleName = "NessieTestProj"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/NessieTestProj/NSEFunctionalTests.swift"
-                  timestampString = "463172077.651313"
+                  timestampString = "464555569.42858"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "450"
-                  endingLineNumber = "450"
-                  offsetFromSymbolStart = "27">
+                  startingLineNumber = "452"
+                  endingLineNumber = "452"
+                  offsetFromSymbolStart = "23">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -623,8 +575,40 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "145"
             endingLineNumber = "145"
-            landmarkName = "init(data:)"
+            landmarkName = "send(completion:)"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NessieFmwk.TransactionRequest.send (NessieFmwk.TransactionRequest)(completion : Swift.Optional&lt;(NessieFmwk.TransactionResult) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "NessieFmwk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/Nessie-iOS-Wrapper/Transaction.swift"
+                  timestampString = "464555569.430425"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "400">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NessieFmwk.TransactionRequest.(send (NessieFmwk.TransactionRequest) -&gt; (completion : Swift.Optional&lt;(NessieFmwk.TransactionResult) -&gt; ()&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "NessieFmwk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/Nessie-iOS-Wrapper/Transaction.swift"
+                  timestampString = "464555569.4306"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "923">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -634,11 +618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Nessie-iOS-Wrapper/Withdrawal.swift"
-            timestampString = "463100833.180244"
+            timestampString = "464554162.543827"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
             landmarkName = "init(data:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -655,8 +639,40 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "177"
             endingLineNumber = "177"
-            landmarkName = "init(data:)"
+            landmarkName = "init(builder:)"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NessieFmwk.PurchaseRequest.send (NessieFmwk.PurchaseRequest)(completion : Swift.Optional&lt;(NessieFmwk.PurchaseResult) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "NessieFmwk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/Nessie-iOS-Wrapper/Purchase.swift"
+                  timestampString = "464555569.433107"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "177"
+                  endingLineNumber = "177"
+                  offsetFromSymbolStart = "400">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NessieFmwk.PurchaseRequest.(send (NessieFmwk.PurchaseRequest) -&gt; (completion : Swift.Optional&lt;(NessieFmwk.PurchaseResult) -&gt; ()&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "NessieFmwk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/Nessie-iOS-Wrapper/Purchase.swift"
+                  timestampString = "464555569.433276"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "177"
+                  endingLineNumber = "177"
+                  offsetFromSymbolStart = "923">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -666,11 +682,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NessieTestProj/NSEFunctionalTests.swift"
-            timestampString = "463166819.881599"
+            timestampString = "464554231.305538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "547"
-            endingLineNumber = "547"
+            startingLineNumber = "549"
+            endingLineNumber = "549"
             landmarkName = "testPutPurchase(_:)"
             landmarkType = "5">
             <Locations>
@@ -682,27 +698,12 @@
                   moduleName = "NessieTestProj"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/NessieTestProj/NSEFunctionalTests.swift"
-                  timestampString = "463172077.652989"
+                  timestampString = "464555569.434468"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "547"
-                  endingLineNumber = "547"
-                  offsetFromSymbolStart = "141">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "NessieTestProj.PurchaseTests.(testPutPurchase (NessieTestProj.PurchaseTests) -&gt; (Swift.Optional&lt;NessieFmwk.Purchase&gt;) -&gt; ()).(closure #1)"
-                  moduleName = "NessieTestProj"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/NessieTestProj/NSEFunctionalTests.swift"
-                  timestampString = "463172077.65318"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "547"
-                  endingLineNumber = "547"
-                  offsetFromSymbolStart = "1160">
+                  startingLineNumber = "550"
+                  endingLineNumber = "550"
+                  offsetFromSymbolStart = "257">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -712,11 +713,11 @@
                   moduleName = "NessieTestProj"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hbg687/Downloads/nessie-ios-wrapper-master/Nessie-iOS-Wrapper/NessieTestProj/NSEFunctionalTests.swift"
-                  timestampString = "463172077.653314"
+                  timestampString = "464555569.434656"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "549"
-                  endingLineNumber = "549"
+                  startingLineNumber = "550"
+                  endingLineNumber = "550"
                   offsetFromSymbolStart = "16">
                </Location>
             </Locations>
@@ -729,11 +730,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NessieTestProj/NSEFunctionalTests.swift"
-            timestampString = "463166819.881599"
+            timestampString = "464554231.305538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "527"
-            endingLineNumber = "527"
+            startingLineNumber = "529"
+            endingLineNumber = "529"
             landmarkName = "testPostPurchase()"
             landmarkType = "5">
          </BreakpointContent>
@@ -745,11 +746,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NessieTestProj/NSEFunctionalTests.swift"
-            timestampString = "463163775.817897"
+            timestampString = "464554231.305538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "480"
-            endingLineNumber = "480"
+            startingLineNumber = "482"
+            endingLineNumber = "482"
             landmarkName = "testGetAllPurchases()"
             landmarkType = "5">
          </BreakpointContent>
@@ -766,7 +767,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "119"
             endingLineNumber = "119"
-            landmarkName = "addParamsToRequest()"
+            landmarkName = "init(builder:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -782,7 +783,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
             endingLineNumber = "81"
-            landmarkName = "buildRequestUrl()"
+            landmarkName = "init(builder:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

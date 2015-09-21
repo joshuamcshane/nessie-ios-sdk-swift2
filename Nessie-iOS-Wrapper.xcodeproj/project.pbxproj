@@ -319,6 +319,8 @@
 		B8C549E81ACEE595002206AC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Nessie;
 				TargetAttributes = {

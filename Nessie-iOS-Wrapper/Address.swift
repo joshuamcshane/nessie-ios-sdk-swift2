@@ -56,7 +56,7 @@ public class Address:NSObject {
     }
     
     internal func toDict() -> Dictionary<String,AnyObject> {
-        var dict = ["street_name":streetName,"street_number":streetNumber,"state":state, "city":city, "zip":zipCode]
+        let dict = ["street_name":streetName,"street_number":streetNumber,"state":state, "city":city, "zip":zipCode]
         return dict
     }
 }

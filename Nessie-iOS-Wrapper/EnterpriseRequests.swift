@@ -25,7 +25,7 @@ public class EnterpriseTransferRequest {
     public init?(transactionId: String?)
     {
         self.transactionId = transactionId
-        var requestString = buildRequestUrl()
+        let requestString = buildRequestUrl()
         buildRequest(requestString)
     }
     
@@ -56,14 +56,14 @@ public class EnterpriseTransferRequest {
         
         NSURLSession.sharedSession().dataTaskWithRequest(request!, completionHandler:{(data, response, error) -> Void in
             if error != nil {
-                NSLog(error.description)
+                NSLog(error!.description)
                 return
             }
             if (completion == nil) {
                 return
             }
             
-            var result = TransferResult(data: data)
+            let result = TransferResult(data: data!)
             completion!(result)
             
         }).resume()
@@ -88,7 +88,7 @@ public class EnterpriseDepositRequest {
     public init?(transactionId: String?)
     {
         self.transactionId = transactionId
-        var requestString = buildRequestUrl()
+        let requestString = buildRequestUrl()
         buildRequest(requestString)
     }
     
@@ -119,14 +119,14 @@ public class EnterpriseDepositRequest {
         
         NSURLSession.sharedSession().dataTaskWithRequest(request!, completionHandler:{(data, response, error) -> Void in
             if error != nil {
-                NSLog(error.description)
+                NSLog(error!.description)
                 return
             }
             if (completion == nil) {
                 return
             }
             
-            var result = DepositResult(data: data)
+            let result = DepositResult(data: data!)
             completion!(result)
             
         }).resume()
@@ -150,7 +150,7 @@ public class EnterpriseWithdrawalRequest {
     public init?(transactionId: String?)
     {
         self.transactionId = transactionId
-        var requestString = buildRequestUrl()
+        let requestString = buildRequestUrl()
         buildRequest(requestString)
     }
     
@@ -181,14 +181,14 @@ public class EnterpriseWithdrawalRequest {
         
         NSURLSession.sharedSession().dataTaskWithRequest(request!, completionHandler:{(data, response, error) -> Void in
             if error != nil {
-                NSLog(error.description)
+                NSLog(error!.description)
                 return
             }
             if (completion == nil) {
                 return
             }
             
-            var result = WithdrawalResult(data: data)
+            let result = WithdrawalResult(data: data!)
             completion!(result)
             
         }).resume()
@@ -212,7 +212,7 @@ public class EnterpriseBillRequest {
     public init?(billId: String?)
     {
         self.billId = billId
-        var requestString = buildRequestUrl()
+        let requestString = buildRequestUrl()
         buildRequest(requestString)
     }
     
@@ -243,14 +243,14 @@ public class EnterpriseBillRequest {
         
         NSURLSession.sharedSession().dataTaskWithRequest(request!, completionHandler:{(data, response, error) -> Void in
             if error != nil {
-                NSLog(error.description)
+                NSLog(error!.description)
                 return
             }
             if (completion == nil) {
                 return
             }
             
-            var result = BillResult(data: data)
+            let result = BillResult(data: data!)
             completion!(result)
             
         }).resume()
@@ -274,7 +274,7 @@ public class EnterpriseCustomerRequest {
     public init?(customerId: String?)
     {
         self.customerId = customerId
-        var requestString = buildRequestUrl()
+        let requestString = buildRequestUrl()
         buildRequest(requestString)
     }
     
@@ -305,14 +305,14 @@ public class EnterpriseCustomerRequest {
         
         NSURLSession.sharedSession().dataTaskWithRequest(request!, completionHandler:{(data, response, error) -> Void in
             if error != nil {
-                NSLog(error.description)
+                NSLog(error!.description)
                 return
             }
             if (completion == nil) {
                 return
             }
             
-            var result = CustomerResult(data: data)
+            let result = CustomerResult(data: data!)
             completion!(result)
             
         }).resume()
@@ -336,7 +336,7 @@ public class EnterpriseAccountRequest {
     public init?(accountId: String?)
     {
         self.accountId = accountId
-        var requestString = buildRequestUrl()
+        let requestString = buildRequestUrl()
         buildRequest(requestString)
     }
     
@@ -367,14 +367,14 @@ public class EnterpriseAccountRequest {
         
         NSURLSession.sharedSession().dataTaskWithRequest(request!, completionHandler:{(data, response, error) -> Void in
             if error != nil {
-                NSLog(error.description)
+                NSLog(error!.description)
                 return
             }
             if (completion == nil) {
                 return
             }
             
-            var result = AccountResult(data: data)
+            let result = AccountResult(data: data!)
             completion!(result)
             
         }).resume()
@@ -398,7 +398,7 @@ public class EnterpriseMerchantRequest {
     public init?(merchantId: String?)
     {
         self.merchantId = merchantId
-        var requestString = buildRequestUrl()
+        let requestString = buildRequestUrl()
         buildRequest(requestString)
     }
     
@@ -429,14 +429,14 @@ public class EnterpriseMerchantRequest {
         
         NSURLSession.sharedSession().dataTaskWithRequest(request!, completionHandler:{(data, response, error) -> Void in
             if error != nil {
-                NSLog(error.description)
+                NSLog(error!.description)
                 return
             }
             if (completion == nil) {
                 return
             }
             
-            var result = MerchantResult(data: data)
+            let result = MerchantResult(data: data!)
             completion!(result)
             
         }).resume()

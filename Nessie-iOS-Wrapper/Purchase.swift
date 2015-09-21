@@ -67,8 +67,8 @@ public class PurchaseRequest {
             return nil
         }
         
-        var requestString = buildRequestUrl()
-        print("\(requestString)\n")
+        let requestString = buildRequestUrl()
+        print("\(requestString)\n", terminator: "")
         buildRequest(requestString)
         
     }
@@ -128,7 +128,12 @@ public class PurchaseRequest {
             if let status = builder.status {
                 params["status"] = status
             }
-            self.request!.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+            do {
+                self.request!.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
+            } catch let error as NSError {
+                err = error
+                self.request!.HTTPBody = nil
+            }
             
         }
         if (builder.requestType == HTTPType.PUT) {
@@ -144,24 +149,29 @@ public class PurchaseRequest {
             if let description = builder.description {
                 params["description"] = description
             }
-            self.request!.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+            do {
+                self.request!.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
+            } catch let error as NSError {
+                err = error
+                self.request!.HTTPBody = nil
+            }
         }
     }
     
     
     //Sending the request
-    public func send(#completion: ((PurchaseResult) -> Void)?) {
+    public func send(completion completion: ((PurchaseResult) -> Void)?) {
         
         NSURLSession.sharedSession().dataTaskWithRequest(request!, completionHandler:{(data, response, error) -> Void in
             if error != nil {
-                NSLog(error.description)
+                NSLog(error!.description)
                 return
             }
             if (completion == nil) {
                 return
             }
             
-            var result = PurchaseResult(data: data)
+            let result = PurchaseResult(data: data!)
             completion!(result)
             
         }).resume()
@@ -173,8 +183,7 @@ public struct PurchaseResult {
     private var dataItem:Purchase?
     private var dataArray:Array<Purchase>?
     private init(data:NSData) {
-        var parseError: NSError?
-        if let parsedObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error:&parseError) as? Array<Dictionary<String,AnyObject>> {
+        if let parsedObject = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? Array<Dictionary<String,AnyObject>> {
             
             dataArray = []
             dataItem = nil
@@ -182,7 +191,7 @@ public struct PurchaseResult {
                 dataArray?.append(Purchase(data: purchase))
             }
         }
-        if let parsedObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error:&parseError) as? Dictionary<String,AnyObject> {
+        if let parsedObject = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? Dictionary<String,AnyObject> {
             dataArray = nil
             
             //If there is an error message, the json will parse to a dictionary, not an array
@@ -196,7 +205,7 @@ public struct PurchaseResult {
                 }
             }
             
-            if let parsedObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error:&parseError) as? Dictionary<String,AnyObject> {
+            if let parsedObject = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? Dictionary<String,AnyObject> {
                 dataArray = nil
                 
                 if let results:Array<AnyObject> = parsedObject["results"] as? Array<AnyObject> {
@@ -213,7 +222,7 @@ public struct PurchaseResult {
         }
         
         if (dataItem == nil && dataArray == nil) {
-            var datastring = NSString(data: data, encoding: NSUTF8StringEncoding)
+            let datastring = NSString(data: data, encoding: NSUTF8StringEncoding)
             if (data.description == "<>") {
                 NSLog("Purchase delete Successful")
             } else {

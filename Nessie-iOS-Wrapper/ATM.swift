@@ -35,7 +35,7 @@ public class ATMRequest {
             return nil
         }
         
-        var requestString = buildRequestUrl();
+        let requestString = buildRequestUrl();
         
         buildRequest(requestString);
         
@@ -56,7 +56,7 @@ public class ATMRequest {
     
     private func validateLocationSearchParameters() -> String {
         if (builder.latitude != nil && builder.longitude != nil && builder.radius != nil) {
-            var locationSearchParameters = "lat=\(builder.latitude!)&lng=\(builder.longitude!)&rad=\(builder.radius!)"
+            let locationSearchParameters = "lat=\(builder.latitude!)&lng=\(builder.longitude!)&rad=\(builder.radius!)"
             return "?"+locationSearchParameters+"&"
         }
         else if !(builder.latitude == nil && builder.longitude == nil && builder.radius == nil) {
@@ -81,14 +81,14 @@ public class ATMRequest {
     {
         NSURLSession.sharedSession().dataTaskWithRequest(request!, completionHandler:{(data, response, error) -> Void in
             if error != nil {
-                NSLog(error.description)
+                NSLog(error!.description)
                 return
             }
             if (completion == nil) {
                 return
             }
             
-            var result = ATMResult(data: data)
+            let result = ATMResult(data: data!)
             completion!(result)
             
         }).resume()
@@ -101,9 +101,7 @@ public struct ATMResult
     private var dataItem:ATM?
     private var dataArray:Array<ATM>?
     private init(data:NSData) {
-        var parseError: NSError?
-
-        let parsedObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error:&parseError) as? Dictionary<String,AnyObject>
+        let parsedObject: AnyObject? = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? Dictionary<String,AnyObject>
         
         if let results = parsedObject as? NSDictionary {
 

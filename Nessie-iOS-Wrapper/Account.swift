@@ -48,7 +48,7 @@ public class AccountRequest {
             return nil
         }
         
-        var requestString = buildRequestUrl();
+        let requestString = buildRequestUrl();
         
         self.request = buildRequest(requestString);
         
@@ -97,14 +97,24 @@ public class AccountRequest {
 
         if (builder.requestType == HTTPType.POST) {
             params = ["nickname":builder.nickname!, "type":builder.accountType!.rawValue, "balance":builder.balance!,"rewards":builder.rewards!]
-            request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+            do {
+                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
+            } catch let error as NSError {
+                err = error
+                request.HTTPBody = nil
+            }
             
         }
         if (builder.requestType == HTTPType.PUT) {
             if let nickname = builder.nickname {
                 params["nickname"] = nickname
             }
-            request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+            do {
+                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
+            } catch let error as NSError {
+                err = error
+                request.HTTPBody = nil
+            }
         }
         return request
     }
@@ -115,14 +125,14 @@ public class AccountRequest {
         
         NSURLSession.sharedSession().dataTaskWithRequest(request!, completionHandler:{(data, response, error) -> Void in
             if error != nil {
-                NSLog(error.description)
+                NSLog(error!.description)
                 return
             }
             if (completion == nil) {
                 return
             }
             
-            var result = AccountResult(data: data)
+            let result = AccountResult(data: data!)
             completion!(result)
             
         }).resume()
@@ -135,7 +145,7 @@ public struct AccountResult {
     private var dataArray:Array<Account>?
     internal init(data:NSData) {
         var parseError: NSError?
-        if let parsedObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error:&parseError) as? Array<Dictionary<String,AnyObject>> {
+        if let parsedObject = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? Array<Dictionary<String,AnyObject>> {
             
             dataArray = []
             dataItem = nil
@@ -143,7 +153,7 @@ public struct AccountResult {
                 dataArray?.append(Account(data: account))
             }
         }
-        if let parsedObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error:&parseError) as? Dictionary<String,AnyObject> {
+        if let parsedObject = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? Dictionary<String,AnyObject> {
             dataArray = nil
             
             //If there is an error message, the json will parse to a dictionary, not an array

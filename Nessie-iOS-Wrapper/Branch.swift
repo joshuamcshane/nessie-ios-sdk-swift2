@@ -33,7 +33,7 @@ public class BranchRequest {
             return nil
         }
         
-        var requestString = buildRequestUrl();
+        let requestString = buildRequestUrl();
         
         buildRequest(requestString);
         
@@ -67,14 +67,14 @@ public class BranchRequest {
     {
         NSURLSession.sharedSession().dataTaskWithRequest(request!, completionHandler:{(data, response, error) -> Void in
             if error != nil {
-                NSLog(error.description)
+                NSLog(error!.description)
                 return
             }
             if (completion == nil) {
                 return
             }
             
-            var result = BranchResult(data: data)
+            let result = BranchResult(data: data!)
             completion!(result)
             
         }).resume()
@@ -87,8 +87,7 @@ public struct BranchResult
     private var dataItem:Branch?
     private var dataArray:Array<Branch>?
     private init(data:NSData) {
-        var parseError: NSError?
-        if let parsedObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error:&parseError) as? Array<Dictionary<String,AnyObject>> {
+        if let parsedObject = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? Array<Dictionary<String,AnyObject>> {
             
             dataArray = []
             dataItem = nil
@@ -96,12 +95,12 @@ public struct BranchResult
                 dataArray?.append(Branch(data: branch))
             }
         }
-        if let parsedObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error:&parseError) as? Dictionary<String,AnyObject> {
+        if let parsedObject = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? Dictionary<String,AnyObject> {
             dataArray = nil
             dataItem = Branch(data: parsedObject)
         }
         if (dataItem == nil && dataArray == nil) {
-            var datastring = NSString(data: data, encoding: NSUTF8StringEncoding)
+            let datastring = NSString(data: data, encoding: NSUTF8StringEncoding)
             NSLog("Could not parse data: \(datastring)")
         }
     }

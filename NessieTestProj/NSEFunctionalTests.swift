@@ -13,7 +13,7 @@ class AccountTests {
     let client = NSEClient.sharedInstance
 
     init() {
-        client.setKey("INSERT KEY")
+        client.setKey("2c54c85dc28e084930c0e06703711a14")
         testAccountGets()
         testAccountPost()
     }
@@ -22,13 +22,13 @@ class AccountTests {
         
         //Test with my key
         
-        var getAllRequest = AccountRequest(block: {(builder) in
+        let getAllRequest = AccountRequest(block: {(builder) in
             builder.requestType = HTTPType.GET
         })
         
         getAllRequest?.send({(result) in
             var accounts = result.getAllAccounts()
-            print("Accounts created:\(accounts)\n")
+            print("Accounts created:\(accounts)\n", terminator: "")
             let accountToGet = accounts![0]
             let accountToUpdateThenDelete = accounts![1]
             self.testAccountGetOne(accountToGet.accountId)
@@ -37,19 +37,19 @@ class AccountTests {
     }
     
     func testAccountGetOne(identifier:String) {
-        var getOneRequest = AccountRequest(block: {(builder) in
+        let getOneRequest = AccountRequest(block: {(builder) in
             builder.requestType = HTTPType.GET
             builder.accountId = identifier
         })
         
         getOneRequest?.send({(result) in
-            var account = result.getAccount()
-            print("Account fetched:\(account)\n")
+            let account = result.getAccount()
+            print("Account fetched:\(account)\n", terminator: "")
         })
     }
     
     func testAccountPost() {
-        var accountPostRequest = AccountRequest(block: {(builder:AccountRequestBuilder) in
+        let accountPostRequest = AccountRequest(block: {(builder:AccountRequestBuilder) in
             builder.requestType = HTTPType.POST
             builder.accountType = AccountType.SAVINGS
             builder.balance = 100
@@ -64,7 +64,7 @@ class AccountTests {
     }
     
     func testAccountPutDelete(identifier:String) {
-        var accountPutRequest = AccountRequest(block: {(builder:AccountRequestBuilder) in
+        let accountPutRequest = AccountRequest(block: {(builder:AccountRequestBuilder) in
             builder.requestType = HTTPType.PUT
             builder.accountId = identifier
             builder.nickname = "Victor"
@@ -73,7 +73,7 @@ class AccountTests {
         accountPutRequest?.send({(result:AccountResult) in
             //should not be any result
             
-            var accountDeleteRequest = AccountRequest(block: {(builder:AccountRequestBuilder) in
+            let accountDeleteRequest = AccountRequest(block: {(builder:AccountRequestBuilder) in
                 builder.requestType = HTTPType.DELETE
                 builder.accountId = identifier
             })
@@ -89,13 +89,13 @@ class ATMTests {
     let client = NSEClient.sharedInstance
 
     init() {
-        client.setKey("INSERT KEY")
+        client.setKey("2c54c85dc28e084930c0e06703711a14")
 
         testATMGetAll()
     }
 
     func testATMGetAll() {
-        var atmGetAllRequest = ATMRequest(block: {(builder:ATMRequestBuilder) in
+        let atmGetAllRequest = ATMRequest(block: {(builder:ATMRequestBuilder) in
             builder.requestType = HTTPType.GET
             builder.latitude = 38.9283
             builder.longitude = -77.1753
@@ -104,17 +104,17 @@ class ATMTests {
         
         atmGetAllRequest?.send({(result:ATMResult) in
             var atms = result.getAllATMs()
-            print("ATMs fetched:\(atms)\n")
+            print("ATMs fetched:\(atms)\n", terminator: "")
             
-            var atmToGetID = atms![0].atmId
-            var getOneATMRequest = ATMRequest(block: {(builder:ATMRequestBuilder) in
+            let atmToGetID = atms![0].atmId
+            let getOneATMRequest = ATMRequest(block: {(builder:ATMRequestBuilder) in
                 builder.requestType = HTTPType.GET
                 builder.atmId = atmToGetID
             })
             
             getOneATMRequest?.send({(result:ATMResult) in
-                var atm = result.getATM()
-                print("ATM fetched:\(atm)\n")
+                let atm = result.getATM()
+                print("ATM fetched:\(atm)\n", terminator: "")
             })
         })
         
@@ -125,7 +125,7 @@ class BillTests {
     let client = NSEClient.sharedInstance
     
     init() {
-        client.setKey("INSERT KEY")
+        client.setKey("2c54c85dc28e084930c0e06703711a14")
 
         testGetAllBills()
     }
@@ -134,7 +134,7 @@ class BillTests {
     var accountToPay:Account!
     
     func testGetAllBills() {
-        var getAllRequest = AccountRequest(block: {(builder:AccountRequestBuilder) in
+        let getAllRequest = AccountRequest(block: {(builder:AccountRequestBuilder) in
             builder.requestType = HTTPType.GET
         })
         
@@ -152,7 +152,8 @@ class BillTests {
                 builder.requestType = HTTPType.GET
                 builder.customerId = self.accountToAccess.customerId
             })?.send(completion: {(result:BillResult) in
-                var bills = result.getAllBills()
+                let bills = result.getAllBills()
+                print(bills)
             })
 
             
@@ -185,7 +186,8 @@ class BillTests {
             builder.requestType = HTTPType.GET
             builder.billId = bill.billId
         })?.send(completion: {(result:BillResult) in
-            var billresult = result.getBill()
+            let billresult = result.getBill()
+            print(billresult)
         })
     }
     
@@ -227,7 +229,7 @@ class BranchTests {
     let client = NSEClient.sharedInstance
 
     init() {
-        client.setKey("INSERT KEY")
+        client.setKey("2c54c85dc28e084930c0e06703711a14")
 
         testBranchGetAll()
     }
@@ -259,7 +261,7 @@ class CustomerTests {
     let client = NSEClient.sharedInstance
     
     init() {
-        client.setKey("INSERT KEY")
+        client.setKey("2c54c85dc28e084930c0e06703711a14")
         
         testGetAllCustomers()
     }
@@ -277,7 +279,7 @@ class CustomerTests {
             builder.requestType = HTTPType.GET
         })?.send({(result:CustomerResult) in
             var customers = result.getAllCustomers()
-            print("Customers fetched:\(customers)\n")
+            print("Customers fetched:\(customers)\n", terminator: "")
             var customerToGet = customers![3]
             var customerToGetFromAccount = customers![customers!.count-1]
             /*********************
@@ -309,7 +311,7 @@ class CustomerTests {
             builder.customerId = customer.customerId
         })?.send({(result:CustomerResult) in
             var customer = result.getCustomer()
-            print("Customer fetched:\(customer)\n")
+            print("Customer fetched:\(customer)\n", terminator: "")
         })
     }
 
@@ -319,7 +321,7 @@ class CustomerTests {
             builder.accountId = customer.accountIds?[0]
         })?.send({(result:CustomerResult) in
             var customer = result.getCustomer()
-            print("Customer from account fetched:\(customer)\n")
+            print("Customer from account fetched:\(customer)\n", terminator: "")
         })
     }
 
@@ -329,7 +331,7 @@ class CustomerTests {
             builder.customerId = customer.customerId
         })?.send({(result:AccountResult) in
             var accounts = result.getAllAccounts()
-            print("Accounts from customer fetched:\(accounts)\n")
+            print("Accounts from customer fetched:\(accounts)\n", terminator: "")
         })
     }
     
@@ -360,7 +362,7 @@ class DepositTests {
     let client = NSEClient.sharedInstance
     
     init() {
-        client.setKey("INSERT KEY")
+        client.setKey("2c54c85dc28e084930c0e06703711a14")
         
         testGetAllDeposits()
     }
@@ -389,7 +391,7 @@ class DepositTests {
             builder.depositId = deposit.transactionId
         })?.send(completion: {(result:DepositResult) in
             var depositResult = result.getDeposit()
-            print(depositResult)
+            print(depositResult, terminator: "")
         })
     }
     
@@ -434,7 +436,7 @@ class DepositTests {
         }
         DepositRequest(block: {(builder:DepositRequestBuilder) in
             builder.depositId = deposit!.transactionId
-            println(deposit!.status)
+            print(deposit!.status)
             builder.requestType = HTTPType.PUT
             builder.amount = 4300
             builder.depositMedium = TransactionMedium.REWARDS
@@ -448,7 +450,7 @@ class DepositTests {
     func testDeleteDeposit(deposit:Transaction?) {
         DepositRequest(block: {(builder:DepositRequestBuilder) in
             builder.depositId = deposit!.transactionId
-            println(deposit!.status)
+            print(deposit!.status)
 
             builder.requestType = HTTPType.DELETE
             builder.accountId = self.accountToAccess.accountId
@@ -462,7 +464,7 @@ class PurchaseTests {
     let client = NSEClient.sharedInstance
     
     init() {
-        client.setKey("INSERT KEY")
+        client.setKey("2c54c85dc28e084930c0e06703711a14")
         
         testGetAllPurchases()
     }
@@ -491,7 +493,7 @@ class PurchaseTests {
             builder.purchaseId = purchase.transactionId
         })?.send(completion: {(result:PurchaseResult) in
             var purchaseResult = result.getPurchase()
-            print(purchaseResult)
+            print(purchaseResult, terminator: "")
         })
     }
     
@@ -537,7 +539,7 @@ class PurchaseTests {
         }
         PurchaseRequest(block: {(builder:PurchaseRequestBuilder) in
             builder.purchaseId = purchase!.purchaseId
-            println(purchase!.status)
+            print(purchase!.status)
             builder.requestType = HTTPType.PUT
             builder.amount = 4300
             builder.purchaseMedium = TransactionMedium.REWARDS
@@ -551,7 +553,7 @@ class PurchaseTests {
     func testDeletePurchase(purchase:Purchase?) {
         PurchaseRequest(block: {(builder:PurchaseRequestBuilder) in
             builder.purchaseId = purchase!.purchaseId
-            println(purchase!.status)
+            print(purchase!.status)
             
             builder.requestType = HTTPType.DELETE
             builder.accountId = self.accountToAccess.accountId
@@ -565,7 +567,7 @@ class TransferTests {
     let client = NSEClient.sharedInstance
     
     init() {
-        client.setKey("INSERT KEY")
+        client.setKey("2c54c85dc28e084930c0e06703711a14")
         
         testGetAllTransfers()
     }
@@ -594,7 +596,7 @@ class TransferTests {
             builder.transferId = transfer.transferId
         })?.send(completion: {(result:TransferResult) in
             var transferResult = result.getTransfer()
-            print(transferResult)
+            print(transferResult, terminator: "")
         })
     }
     
@@ -640,7 +642,7 @@ class TransferTests {
         }
         TransferRequest(block: {(builder:TransferRequestBuilder) in
             builder.transferId = transfer!.transferId
-            println(transfer!.status)
+            print(transfer!.status)
             builder.requestType = HTTPType.PUT
             builder.amount = 4300
             builder.transferMedium = TransactionMedium.REWARDS
@@ -654,7 +656,7 @@ class TransferTests {
     func testDeleteTransfer(transfer:Transfer?) {
         TransferRequest(block: {(builder:TransferRequestBuilder) in
             builder.transferId = transfer!.transferId
-            println(transfer!.status)
+            print(transfer!.status)
             
             builder.requestType = HTTPType.DELETE
             builder.accountId = self.accountToAccess.accountId
@@ -668,7 +670,7 @@ class WithdrawalTests {
     let client = NSEClient.sharedInstance
     
     init() {
-        client.setKey("INSERT KEY")
+        client.setKey("2c54c85dc28e084930c0e06703711a14")
         
         testGetAllWithdrawals()
     }
@@ -697,7 +699,7 @@ class WithdrawalTests {
             builder.withdrawalId = withdrawal.withdrawalId
         })?.send(completion: {(result:WithdrawalResult) in
             var withdrawalResult = result.getWithdrawal()
-            print(withdrawalResult)
+            print(withdrawalResult, terminator: "")
         })
     }
     
@@ -742,7 +744,7 @@ class WithdrawalTests {
         }
         WithdrawalRequest(block: {(builder:WithdrawalRequestBuilder) in
             builder.withdrawalId = withdrawal!.withdrawalId
-            println(withdrawal!.status)
+            print(withdrawal!.status)
             builder.requestType = HTTPType.PUT
             builder.amount = 4300
             builder.withdrawalMedium = TransactionMedium.REWARDS
@@ -755,7 +757,7 @@ class WithdrawalTests {
     func testDeleteWithdrawal(withdrawal:Withdrawal?) {
         WithdrawalRequest(block: {(builder:WithdrawalRequestBuilder) in
             builder.withdrawalId = withdrawal!.withdrawalId
-            println(withdrawal!.status)
+            print(withdrawal!.status)
             
             builder.requestType = HTTPType.DELETE
             builder.accountId = self.accountToAccess.accountId
@@ -769,7 +771,7 @@ class MerchantTests {
     let client = NSEClient.sharedInstance
     
     init() {
-        client.setKey("INSERT KEY")
+        client.setKey("2c54c85dc28e084930c0e06703711a14")
         
         testMerchants()
     }
@@ -787,7 +789,7 @@ class MerchantTests {
         
         merchantGetAllRequest?.send({(result:MerchantResult) in
             var merchants = result.getAllMerchants()
-            print("Merchants fetched:\(merchants)\n")
+            print("Merchants fetched:\(merchants)\n", terminator: "")
             var merchantID = merchants![0].merchantId
             
             self.testPutMerchant(merchants![0])
@@ -799,7 +801,7 @@ class MerchantTests {
             
             getOneMerchantRequest?.send({(result:MerchantResult) in
                 var merchant = result.getMerchant()
-                print("Merchant fetched:\(merchant)\n")
+                print("Merchant fetched:\(merchant)\n", terminator: "")
             })
             
         })
@@ -843,7 +845,7 @@ class TransactionTests {
     let client = NSEClient.sharedInstance
     
     init() {
-        client.setKey("INSERT KEY")
+        client.setKey("2c54c85dc28e084930c0e06703711a14")
         
         testGetAllTransactions()
     }
@@ -917,7 +919,7 @@ class TransactionTests {
         }
         TransactionRequest(block: {(builder:TransactionRequestBuilder) in
             builder.transactionId = transaction!.transactionId
-            println(transaction!.status)
+            print(transaction!.status)
             builder.requestType = HTTPType.PUT
             builder.accountId = self.accountToAccess.accountId
             builder.transactionMedium = TransactionMedium.REWARDS
@@ -931,7 +933,7 @@ class TransactionTests {
     func testDeleteTransaction(transaction:Transaction) {
         TransactionRequest(block: {(builder:TransactionRequestBuilder) in
             builder.transactionId = transaction.transactionId
-            println(transaction.status)
+            print(transaction.status)
             
             builder.requestType = HTTPType.DELETE
             builder.accountId = self.accountToAccess.accountId
@@ -945,7 +947,7 @@ class EnterpriseTests {
     let client = NSEClient.sharedInstance
     
     init() {
-        client.setKey("INSERT KEY")
+        client.setKey("2c54c85dc28e084930c0e06703711a14")
         
         testEnterpriseGets()
     }
@@ -984,34 +986,34 @@ class EnterpriseTests {
         
         EnterpriseTransferRequest()?.send({(result:TransferResult) in
             var transfers = result.getAllTransfers()
-            print("\(transfers)\n")
+            print("\(transfers)\n", terminator: "")
             EnterpriseTransferRequest(transactionId: transfers![0].transferId)?.send({(result:TransferResult) in
                 var transfer = result.getTransfer()
-                print("\(transfer)\n")
+                print("\(transfer)\n", terminator: "")
             })
         })
         EnterpriseDepositRequest()?.send({(result:DepositResult) in
             var deposits = result.getAllDeposits()
-            print("\(deposits)\n")
+            print("\(deposits)\n", terminator: "")
             EnterpriseDepositRequest(transactionId: deposits![0].transactionId)?.send({(result:DepositResult) in
                 var deposit = result.getDeposit()
-                print("\(deposit)\n")
+                print("\(deposit)\n", terminator: "")
             })
         })
         EnterpriseWithdrawalRequest()?.send({(result:WithdrawalResult) in
             var withdrawals = result.getAllWithdrawals()
-            print("\(withdrawals)\n")
+            print("\(withdrawals)\n", terminator: "")
             EnterpriseWithdrawalRequest(transactionId: withdrawals![0].withdrawalId)?.send({(result:WithdrawalResult) in
                 var withdrawal = result.getWithdrawal()
-                print("\(withdrawal)\n")
+                print("\(withdrawal)\n", terminator: "")
             })
         })
         EnterpriseMerchantRequest()?.send({(result:MerchantResult) in
             var merchants = result.getAllMerchants()
-            print("\(merchants)\n")
+            print("\(merchants)\n", terminator: "")
             EnterpriseMerchantRequest(merchantId: merchants![0].merchantId)?.send({(result:MerchantResult) in
                 var merchant = result.getMerchant()
-                print("\(merchant)\n")
+                print("\(merchant)\n", terminator: "")
             })
         })
     }
