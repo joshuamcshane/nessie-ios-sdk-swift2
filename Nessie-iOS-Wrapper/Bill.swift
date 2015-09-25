@@ -122,8 +122,10 @@ public class BillRequest {
             do {
                 self.request!.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
             } catch let error as NSError {
+                if err != nil {
                 err = error
                 self.request!.HTTPBody = nil
+                }
             }
             
         }
@@ -149,8 +151,10 @@ public class BillRequest {
             do {
                 self.request!.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
             } catch let error as NSError {
+                if err != nil {
                 err = error
                 self.request!.HTTPBody = nil
+                }
             }
         }
     }
@@ -179,7 +183,7 @@ public struct BillResult {
     private var dataItem:Bill?
     private var dataArray:Array<Bill>?
     internal init(data:NSData) {
-        var parseError: NSError?
+        //var parseError: NSError?
         if let parsedObject = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? Array<Dictionary<String,AnyObject>> {
             dataArray = []
             dataItem = nil

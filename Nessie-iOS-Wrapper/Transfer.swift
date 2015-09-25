@@ -129,8 +129,10 @@ public class TransferRequest {
             do {
                 self.request!.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
             } catch let error as NSError {
+                if err != nil {
                 err = error
                 self.request!.HTTPBody = nil
+                }
             }
             
         }
@@ -181,7 +183,7 @@ public struct TransferResult {
     private var dataItem:Transfer?
     private var dataArray:Array<Transfer>?
     internal init(data:NSData) {
-        var parseError: NSError?
+        //var parseError: NSError?
         if let parsedObject = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? Array<Dictionary<String,AnyObject>> {
             
             dataArray = []
@@ -213,7 +215,7 @@ public struct TransferResult {
                 }
             }
             
-            if let message:AnyObject = parsedObject["message"] {
+            if let _:AnyObject = parsedObject["message"] {
                 
             }
             

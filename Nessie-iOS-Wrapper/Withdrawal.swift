@@ -118,8 +118,10 @@ public class WithdrawalRequest {
             do {
                 self.request!.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
             } catch let error as NSError {
-                err = error
-                self.request!.HTTPBody = nil
+                if err != nil{
+                    err = error
+                    self.request!.HTTPBody = nil
+                }
             }
             
         }

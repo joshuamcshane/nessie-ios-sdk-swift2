@@ -119,8 +119,10 @@ public class DepositRequest {
             do {
                 self.request!.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
             } catch let error as NSError {
-                err = error
-                self.request!.HTTPBody = nil
+                if err != nil{
+                    err = error
+                    self.request!.HTTPBody = nil
+                }
             }
 
         }
@@ -168,7 +170,7 @@ public struct DepositResult {
     private var dataItem:Transaction?
     private var dataArray:Array<Transaction>?
     internal init(data:NSData) {
-        var parseError: NSError?
+        //var parseError: NSError?
         if let parsedObject = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? Array<Dictionary<String,AnyObject>> {
             
             dataArray = []

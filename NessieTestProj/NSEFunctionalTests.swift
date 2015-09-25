@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import NessieFmwk
+import NessieFmw\k
 
 class AccountTests {
     let client = NSEClient.sharedInstance

@@ -102,7 +102,7 @@ public class MerchantRequest {
                 params["name"] = name
             }
             
-            if let address = builder.address {
+            if let _ = builder.address {
                 let address2 = ["street_number":builder.address!.streetNumber, "street_name":builder.address!.streetName, "city":builder.address!.city, "state":builder.address!.state, "zip":builder.address!.zipCode]
                 params["address"] = address2
             }
@@ -116,8 +116,10 @@ public class MerchantRequest {
             do {
                 request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
             } catch let error as NSError {
+                if err != nil {
                 err = error
                 request.HTTPBody = nil
+                }
             }
             
         }
@@ -128,7 +130,7 @@ public class MerchantRequest {
                 params["name"] = name
             }
             
-            if let address = builder.address {
+            if let _ = builder.address {
                 let address2 = ["street_number":builder.address!.streetNumber, "street_name":builder.address!.streetName, "city":builder.address!.city, "state":builder.address!.state, "zip":builder.address!.zipCode]
                 params["address"] = address2
             }
@@ -142,8 +144,10 @@ public class MerchantRequest {
             do {
                 request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
             } catch let error as NSError {
+                if err != nil {
                 err = error
                 request.HTTPBody = nil
+                }
             }
         }
         
@@ -176,7 +180,7 @@ public struct MerchantResult
     private var dataItem:Merchant?
     private var dataArray:Array<Merchant>?
     internal init(data:NSData) {
-        var parseError: NSError?
+        //var parseError: NSError?
        
         if let parsedObject = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? Array<Dictionary<String,AnyObject>> {
             dataArray = []

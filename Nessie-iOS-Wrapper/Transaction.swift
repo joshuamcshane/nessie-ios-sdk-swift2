@@ -99,8 +99,10 @@ public class TransactionRequest {
             do {
                 self.request!.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
             } catch let error as NSError {
+                if err != nil {
                 err = error
                 self.request!.HTTPBody = nil
+                }
             }
         }
         if (builder.requestType == HTTPType.PUT) {
@@ -119,8 +121,10 @@ public class TransactionRequest {
             do {
                 self.request!.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
             } catch let error as NSError {
+                if err != nil {
                 err = error
                 self.request!.HTTPBody = nil
+                }
             }
         }
     }
