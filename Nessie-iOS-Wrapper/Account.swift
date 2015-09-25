@@ -100,8 +100,10 @@ public class AccountRequest {
             do {
                 request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
             } catch let error as NSError {
+                if err == nil {
                 err = error
                 request.HTTPBody = nil
+                }
             }
             
         }
@@ -112,8 +114,10 @@ public class AccountRequest {
             do {
                 request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
             } catch let error as NSError {
+                if err == nil {
                 err = error
                 request.HTTPBody = nil
+                }
             }
         }
         return request
@@ -144,7 +148,7 @@ public struct AccountResult {
     private var dataItem:Account?
     private var dataArray:Array<Account>?
     internal init(data:NSData) {
-        var parseError: NSError?
+        //var parseError: NSError?
         if let parsedObject = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? Array<Dictionary<String,AnyObject>> {
             
             dataArray = []
